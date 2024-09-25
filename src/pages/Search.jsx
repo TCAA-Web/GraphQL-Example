@@ -25,9 +25,10 @@ export const Search = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  console.log(filmID);
-
-  console.log("Data for single film", data);
-
-  return <h1>{data.film.openingCrawl}</h1>;
+  return (
+    <section>
+      <h5>{data.film.title}</h5>
+      <p>{data.film.openingCrawl}</p>
+    </section>
+  );
 };

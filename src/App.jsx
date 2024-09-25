@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MainLayout } from "./layouts/MainLayout";
-import { Home } from "./pages/Home";
-import { About } from "./pages/About";
-import { Search } from "./pages/Search";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { routes } from "./routes";
 
 function App() {
   const queryClient = new QueryClient();
@@ -14,9 +13,15 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<MainLayout />}>
-              <Route index element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/search/:filmID" element={<Search />} />
+              {routes.map((route) => {
+                return (
+                  <Route
+                    key={route.link}
+                    path={route.link}
+                    element={route.element}
+                  />
+                );
+              })}
             </Route>
           </Routes>
         </Router>

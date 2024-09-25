@@ -3,6 +3,7 @@ import React from "react";
 import { request } from "graphql-request";
 import { allFilms } from "../queries/allFilms";
 import { Link } from "react-router-dom";
+import { StyledLink } from "../components/StyledLink/StyledLink";
 
 export const Home = () => {
   const { data, isLoading, error } = useQuery({
@@ -26,13 +27,15 @@ export const Home = () => {
 
   return (
     <div>
-      {data.allFilms.films.map((item) => {
-        return (
-          <Link to={`search/${item.id}`} key={item.title}>
-            {item.title}
-          </Link>
-        );
-      })}
+      <ul>
+        {data.allFilms.films.map((item) => {
+          return (
+            <li key={item.title}>
+              <StyledLink link={`search/${item.id}`} title={item.title} />
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };
